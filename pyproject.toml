@@ -1,0 +1,26 @@
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+
+[project]
+name = "z80pie"
+version = "0.1.0"
+description = "z80 emulator"
+authors = [
+    {name = "Thomas Cremers",email = "ttcremers@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+z80emu = "z80pie.cli:main"
+test = "scripts.test:main"
+

@@ -1,0 +1,21 @@
+from z80pie.Z80 import Z80
+
+PROGRAM = bytearray([
+    0x06, 0x05,           # LD B, 0x05
+    0x0E, 0x10,           # LD C, 0x10
+    0x3E, 0x20,           # LD A, 0x20
+    0xC6, 0x15,           # ADD A, 0x15 (A now 0x35)
+    0x32, 0x00, 0x40,  # LD (0x4000), A
+    0x3A, 0x00, 0x40,  # LD A, (0x4000) (A back to 0x35)
+    0x00,                    # NOP
+    0xC3, 0x00, 0x00   # JP 0x0000 (loop forever)
+])
+
+def main():
+    cpu = Z80()
+
+    cpu.memory[:len(PROGRAM)] = PROGRAM  
+
+    for _ in range(8):
+        cpu.step()
+
